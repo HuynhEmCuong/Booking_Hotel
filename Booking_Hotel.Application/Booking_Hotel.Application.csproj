@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="DevExtreme.AspNet.Data" Version="2.7.0" />
+		<PackageReference Include="EPPlus" Version="5.1.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.0" />
+		<PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.5.0" />
+		<PackageReference Include="Quartz" Version="3.3.3" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Booking_Hotel.Data.EF\Booking_Hotel.Data.EF.csproj" />
+	  <ProjectReference Include="..\Booking_Hotel.Data\Booking_Hotel.Data.csproj" />
+	  <ProjectReference Include="..\Booking_Hotel.Utilities\Booking_Hotel.Utilities.csproj" />
+	</ItemGroup>
+
+</Project>
