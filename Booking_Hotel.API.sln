@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking_Hotel.API", "Booking_Hotel.API\Booking_Hotel.API.csproj", "{71A764E1-EA2D-405F-B23B-BAA8964A674F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking_Hotel.API", "Booking_Hotel.API\Booking_Hotel.API.csproj", "{71A764E1-EA2D-405F-B23B-BAA8964A674F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Presentation", "1-Presentation", "{6DC0801D-4333-42EB-9AF9-1450D8F67F79}"
 EndProject
@@ -13,13 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Domain", "3-Domain", "{04
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Infrastruture", "4-Infrastruture", "{F1FCBAF5-B2AF-46EC-9F15-31B9AD6BCCC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking_Hotel.Application", "Booking_Hotel.Application\Booking_Hotel.Application.csproj", "{EDE482B5-4DCE-41BB-86B7-93765F908219}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking_Hotel.Application", "Booking_Hotel.Application\Booking_Hotel.Application.csproj", "{EDE482B5-4DCE-41BB-86B7-93765F908219}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking_Hotel.Data", "Booking_Hotel.Data\Booking_Hotel.Data.csproj", "{95FDDCE3-43E8-4A37-8E93-D4087A955A7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking_Hotel.Data", "Booking_Hotel.Data\Booking_Hotel.Data.csproj", "{95FDDCE3-43E8-4A37-8E93-D4087A955A7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking_Hotel.Data.EF", "Booking_Hotel.Data.EF\Booking_Hotel.Data.EF.csproj", "{231A81C5-B661-47D4-9050-4916DA8BFB33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking_Hotel.Data.EF", "Booking_Hotel.Data.EF\Booking_Hotel.Data.EF.csproj", "{231A81C5-B661-47D4-9050-4916DA8BFB33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking_Hotel.Utilities", "Booking_Hotel.Utilities\Booking_Hotel.Utilities.csproj", "{92CE9EA6-2BA2-4A4F-9775-C441BD20338D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking_Hotel.Utilities", "Booking_Hotel.Utilities\Booking_Hotel.Utilities.csproj", "{92CE9EA6-2BA2-4A4F-9775-C441BD20338D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking_Hotel.Web", "Booking_Hotel.Web\Booking_Hotel.Web.csproj", "{ACF028DF-0317-49F7-A257-86C35EE30FAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{92CE9EA6-2BA2-4A4F-9775-C441BD20338D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92CE9EA6-2BA2-4A4F-9775-C441BD20338D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92CE9EA6-2BA2-4A4F-9775-C441BD20338D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACF028DF-0317-49F7-A257-86C35EE30FAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACF028DF-0317-49F7-A257-86C35EE30FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACF028DF-0317-49F7-A257-86C35EE30FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACF028DF-0317-49F7-A257-86C35EE30FAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{95FDDCE3-43E8-4A37-8E93-D4087A955A7E} = {046E2F95-C985-4F4A-ACEF-1203F9667500}
 		{231A81C5-B661-47D4-9050-4916DA8BFB33} = {046E2F95-C985-4F4A-ACEF-1203F9667500}
 		{92CE9EA6-2BA2-4A4F-9775-C441BD20338D} = {F1FCBAF5-B2AF-46EC-9F15-31B9AD6BCCC4}
+		{ACF028DF-0317-49F7-A257-86C35EE30FAC} = {6DC0801D-4333-42EB-9AF9-1450D8F67F79}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {13FFB7A0-2ADB-4953-B76D-DAF4B9FD127C}

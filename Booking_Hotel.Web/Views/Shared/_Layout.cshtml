@@ -1,0 +1,132 @@
+﻿@using  System.Security.Claims;
+@{
+    var accountType = "";
+    var userName = "";
+    if (string.IsNullOrEmpty(User.Identity.Name) == false)
+    {
+        accountType = User.Claims.FirstOrDefault(x => x.Type.Equals("AccountType"))?.Value;
+        userName = User.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.NameIdentifier))?.Value;
+    }
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from netgon.net/artstyles/sochi/home_v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 May 2022 16:29:07 GMT -->
+<head>
+    <meta charset="utf-8" />
+
+    @RenderSection("Metatags", required: false)
+    <title>@ViewData["Title"]</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/favicons/apple-touch-icon-57x57.png">
+    <link rel="shortcut icon" href="/assets/images/favicons/favicon.png" type="image/png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="/assets/styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/demo/style-demo.css" />
+    @RenderSection("Styles", required: false)
+
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader__wrap">
+            <div class="preloader__progress"><span></span></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-white navbar-overlay">
+            <a class="logo-link" href="home_v2.html">
+                <img class="logotype" src="/assets/images/ui/logo-white.svg" alt="Sochi">
+            </a>
+            <div class="navbar__menu">
+                <button class="hamburger" type="button">
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav">
+                    <li class="nav__item _is-current"><a class="nav__link" href="/loai-phong"><span data-hover="Loại phòng">Loại phòng</span></a></li>
+                    @*
+                    <li class="nav__item"><a class="nav__link" href="gallery.html"><span data-hover="Gallery">Gallery</span></a></li>*@
+                    <li class="nav__item"><a class="nav__link" href="/gioi-thieu"><span data-hover="About Us">About Us</span></a></li>
+                    <li class="nav__item"><a class="nav__link" href="/tin-tuc"><span data-hover="Tin tức">Tin tức</span></a></li>
+                    <li class="nav__item"><a class="nav__link" href="/lien-he"><span data-hover="Liên hệ">Liên hệ</span></a></li>
+                    <li class="nav__item"><a class="btn btn__medium" href="/dat-phong"><i class="btn-icon-left icon-bookmark"></i>Đặt phòng</a></li>
+                </ul>
+            </div>
+            <div class="navbar__btn">
+                <a class="btn btn__medium" href="/dat-phong"><i class="btn-icon-left icon-bookmark"></i>Đặt phòng</a>
+            </div>
+        </nav>
+    </header>
+    <!-- /Header -->
+    <!-- Content -->
+    <main class="main">
+        @RenderBody()
+    </main>
+    <!-- /Content -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__left">
+            <ul class="footer__info">
+                <li>© 2019 Sochi Hotel</li>
+                <li><a href="text-page.html">Terms & Conditions</a></li>
+                <li><a href="text-page.html">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <ul class="footer__social">
+            <li><a href="#" class="social-link"><i class="icon-facebook-alt"></i></a></li>
+            <li><a href="#" class="social-link"><i class="icon-twitter-alt"></i></a></li>
+            <li><a href="#" class="social-link"><i class="icon-instagram"></i></a></li>
+        </ul>
+    </footer>
+
+    <!-- Button Live Chat -->
+    <div class="btn-floating js-show-to-scroll"><i class="icon-bubble"></i></div>
+
+    <!-- Demo Menu -->
+    <div class="btnSlideNav slideOpen"></div>
+    <div class="btnSlideNav slideClose"></div>
+    <ul class="slideNav">
+        <li class="slideNav__item rtl-mode"><h4 class="title title--5">More pages</h4> <a href="rtl/home.html">RTL</a></li>
+        <li class="slideNav__item"><a href="home.html">01. Homepage</a></li>
+        <li class="slideNav__item"><a href="home_v2.html">02. Homepage v2</a></li>
+        <li class="slideNav__item"><a href="about.html">03. About Us</a></li>
+        <li class="slideNav__item"><a href="rooms.html">04. Rooms</a></li>
+        <li class="slideNav__item"><a href="rooms_v2.html">05. Rooms v2</a></li>
+        <li class="slideNav__item"><a href="room_details.html">06. Room Details</a></li>
+        <li class="slideNav__item"><a href="room_details_v2.html">07. Room Details v2</a></li>
+        <li class="slideNav__item"><a href="blog.html">08. Blog</a></li>
+        <li class="slideNav__item"><a href="blog_post.html">09. Post</a></li>
+        <li class="slideNav__item"><a href="gallery.html">10. Gallery</a></li>
+        <li class="slideNav__item"><a href="contact.html">11. Contact</a></li>
+        <li class="slideNav__item"><a href="reservations.html">12. Reservations</a></li>
+        <li class="slideNav__item"><a href="reservations_confirmation.html">13. Reservations Confirmation</a> <!--<span class="lable-new">New</span>--></li>
+        <li class="slideNav__item"><a href="payment.html">14. Payment</a></li>
+        <li class="slideNav__item"><a href="text-page.html">15. Text page</a></li>
+        <li class="slideNav__item"><a href="404.html">16. 404</a></li>
+    </ul>
+    <div class="overlay-slideNav"></div>
+    <!-- Demo Menu -->
+    <!-- JavaScripts -->
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/plugins.min.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/mapbox.init.js"></script>
+
+    <script src="assets/demo/plugins-demo.js"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+
+<!-- Mirrored from netgon.net/artstyles/sochi/home_v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 May 2022 16:29:09 GMT -->
+</html>
