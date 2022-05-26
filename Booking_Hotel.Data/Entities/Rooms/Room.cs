@@ -6,29 +6,34 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace Booking_Hotel.Data.Entities.Articles
+namespace Booking_Hotel.Data.Entities.Rooms
 {
-    public class Article : IDateTracking, IUserTracking, ISeoTracking
+    public class Room : IDateTracking, IUserTracking, ISeoTracking
     {
         [Key]
         public int Id { get; set; }
 
-        [StringLength(255)]
+        [StringLength(256)]
         public string Name { get; set; }
 
-        [StringLength(255)]
-        public string Title { get; set; }
+        [StringLength(20)]
+        public string Code { get; set; }
 
-        [StringLength(255)]
         public string Description { get; set; }
 
-        public string Content { get; set; }
+        public int  Position { get; set; }
 
-        [StringLength(255)]
-        public string ImagesUrl { get; set; }
+        public int Person { get; set; }
+
+        public int Children { get; set; }
+
+        public string UrlImage { get; set; }
+
         public Status Status { get; set; }
 
-        public int ArticleCateId { get; set; }
+        public int RoomCateId { get; set; }
+
+        public int RoomStatusId { get; set; }
         public string MetaTile { get; set; }
         public string MetaKeyWord { get; set; }
         public string MetaDescription { get; set; }
@@ -37,7 +42,11 @@ namespace Booking_Hotel.Data.Entities.Articles
         public DateTime? CreateDate { get; set; }
         public DateTime? ModifyDate { get; set; }
 
-        [ForeignKey("ArticleCateId")]
-        public ArticleCategory ArticleCategory { get; set; }
+
+        [ForeignKey("RoomCateId")]
+        public RoomCategory RoomCategory { get; set; }
+
+        [ForeignKey("RoomStatusId")]
+        public RoomStatus RoomStatus{ get; set; }
     }
 }
