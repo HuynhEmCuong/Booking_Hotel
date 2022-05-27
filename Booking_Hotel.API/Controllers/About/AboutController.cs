@@ -28,6 +28,14 @@ namespace Booking_Hotel.API.Controllers
             return Ok(await _service.GetAllAsync());
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<ActionResult> GetFirstAsync()
+        {
+            return Ok(await _service.GetFirstAsync());
+        }
+
+
         [HttpPost]
         public async Task<ActionResult> AddAsync([FromBody] AboutViewModel model)
         {

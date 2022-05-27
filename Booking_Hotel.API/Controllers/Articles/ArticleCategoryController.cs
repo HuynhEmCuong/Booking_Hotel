@@ -47,6 +47,7 @@ namespace Booking_Hotel.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult> FindByIdAsync(int id)
         {
             return Ok(await _service.FindByIdAsync(id));

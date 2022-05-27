@@ -10,7 +10,6 @@ namespace Booking_Hotel.Installers
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped(typeof(IUnitOfWork), typeof(EFUnitOfWork));
             services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
 
             //services.AddScoped<IRepository<EmailLog>, EFRepository<EmailLog>>();

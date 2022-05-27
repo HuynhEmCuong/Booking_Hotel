@@ -1,7 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.16" />
+	  <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.16" />
+
+	  <PackageReference Include="X.PagedList" Version="8.1.0" />
+	  <PackageReference Include="X.PagedList.Mvc.Core" Version="8.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Booking_Hotel.Application\Booking_Hotel.Application.csproj" />
+    <ProjectReference Include="..\Booking_Hotel.Data\Booking_Hotel.Data.csproj" />
+    <ProjectReference Include="..\Booking_Hotel.Utilities\Booking_Hotel.Utilities.csproj" />
+  </ItemGroup>
 
 </Project>

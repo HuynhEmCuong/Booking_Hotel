@@ -1,13 +1,14 @@
+using AutoMapper;
+using Booking_Hotel.Application.AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net.Http.Headers;
 
 namespace Booking_Hotel.Web
 {
@@ -23,7 +24,51 @@ namespace Booking_Hotel.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var config = Configuration.GetSection("Config").Get<Config>();
+            services.Configure<Config>(Configuration.GetSection("Config"));
+            services.AddOptions();
             services.AddControllersWithViews();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSession();
+            services.AddScoped<IMapper>(sp =>
+            {
+                return new Mapper(AutoMapperConfig.RegisterMappings());
+            });
+            services.AddRouting(options => options.LowercaseUrls = true);
+            services.AddSingleton(AutoMapperConfig.RegisterMappings());
+
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Unspecified;
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                //options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+            }
+            );
+
+            services.AddHttpClient("default", client =>
+            {
+                client.BaseAddress = new Uri(config.ApiBase);
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+
+                // access the DI container
+                var serviceProvider = services.BuildServiceProvider();
+                // Find the HttpContextAccessor service
+                var httpContextAccessor = serviceProvider.GetService<IHttpContextAccessor>();
+                // Get the bearer token from the request context (header)
+                //var bearerToken = httpContextAccessor.HttpContext.Request
+                //                      .Headers["Authorization"]
+                //                      .FirstOrDefault(h => h.StartsWith("bearer ", StringComparison.InvariantCultureIgnoreCase));
+
+                //// Add authorization if found
+                //if (bearerToken != null)
+                //    client.DefaultRequestHeaders.Add("Authorization", bearerToken);
+
+                // Other settings
+                var jwtToken = httpContextAccessor.HttpContext.User.FindFirst("JwtToken");
+                if (jwtToken != null)
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken.Value);
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

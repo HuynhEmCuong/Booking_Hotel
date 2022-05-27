@@ -3,11 +3,15 @@ using Booking_Hotel.Application.Service;
 using Booking_Hotel.Application.ViewModels;
 using Booking_Hotel.Data.EF.Interface;
 using Booking_Hotel.Data.Entities.Rooms;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Booking_Hotel.Application.Services
 {
     public interface IRoomService : IBaseService<RoomViewModel>
     {
+        Task<List<RoomViewModel>> GetAllByCatId(int catId);
 
     }
     public class RoomService : BaseService<Room, RoomViewModel>, IRoomService
@@ -22,6 +26,12 @@ namespace Booking_Hotel.Application.Services
             _mapper = mapper;
             _unitOfWork = unitOfWork;
             _configMapper = configMapper;
+        }
+
+        public async Task<List<RoomViewModel>> GetAllByCatId(int catId)
+        {
+            var data = await _repository.FindAll(x => x.RoomCateId == catId).AsNoTracking().ToListAsync();
+            return _mapper.Map<List<RoomViewModel>>(data);
         }
     }
 }

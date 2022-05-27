@@ -26,5 +26,12 @@
 		<ProjectReference Include="..\Booking_Hotel.Utilities\Booking_Hotel.Utilities.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="wwwroot\FileUpload\Headers\" />
+	  <Folder Include="wwwroot\FileUpload\RoomsCategory\" />
+	  <Folder Include="wwwroot\FileUpload\ArticlesCategory\" />
+	  <Folder Include="wwwroot\FileUpload\Articles\" />
+	</ItemGroup>
+
 
 </Project>

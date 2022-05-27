@@ -33,6 +33,7 @@ namespace Booking_Hotel.Application.Service
         Task<LoadResult> LoadDxoLookupAsync(DataSourceLoadOptions loadOptions);
 
         Task<LoadResult> LoadDxoGridAsync(DataSourceLoadOptions loadOptions);
+
     }
     public class BaseService<T, TViewModel>: IBaseService<TViewModel> where T : class where TViewModel : class
     {

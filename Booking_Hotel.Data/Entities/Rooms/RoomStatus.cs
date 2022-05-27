@@ -13,10 +13,10 @@ namespace Booking_Hotel.Data.Entities.Rooms
         public int Id { get; set; }
 
         [StringLength(256)]
-        public int Name { get; set; }
+        public string Name { get; set; }
 
         [StringLength(15)]
-        public int Code { get; set; }
+        public string Code { get; set; }
 
         [StringLength(256)]
         public string Description { get; set; }

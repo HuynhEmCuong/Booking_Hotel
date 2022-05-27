@@ -28,6 +28,13 @@ namespace Booking_Hotel.API.Controllers
             return Ok(await _service.GetAllAsync());
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<ActionResult> GetAllByCatIdAsync(int catId)
+        {
+            return Ok(await _service.GetAllByCatId(catId));
+        }
+
         [HttpPost]
         public async Task<ActionResult> AddAsync([FromBody] ArticleViewModel model)
         {
@@ -47,6 +54,7 @@ namespace Booking_Hotel.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult> FindByIdAsync(int id)
         {
             return Ok(await _service.FindByIdAsync(id));
