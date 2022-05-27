@@ -1,4 +1,9 @@
 ﻿using Booking_Hotel.Data.Entities;
+using Booking_Hotel.Data.Entities.Aboutes;
+using Booking_Hotel.Data.Entities.Articles;
+using Booking_Hotel.Data.Entities.Contacts;
+using Booking_Hotel.Data.Entities.Reservations;
+using Booking_Hotel.Data.Entities.Rooms;
 using Booking_Hotel.Ultilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -24,8 +29,24 @@ namespace Booking_Hotel.Data.EF
         {
             _contextAccessor = contextAccessor;
         }
+        public DbSet<RoomCategory> RoomCategories { get; set; }
 
-        public DbSet<EmailLog> EmailLogs{ get; set; }
+        public DbSet<Room> Rooms { get; set; }
+
+        public DbSet<Reservation> Reservations { get; set; }
+
+        public DbSet<Guest> Guests { get; set; }
+
+        public DbSet<Contact> Contacts { get; set; }
+
+        public DbSet<ArticleCategory> ArticleCategories { get; set; }
+
+        public DbSet<Article> Articles { get; set; }
+
+        public DbSet<About> Abouts { get; set; }
+
+
+        public DbSet<EmailLog> EmailLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -43,8 +64,17 @@ namespace Booking_Hotel.Data.EF
 
 
 
-            //builder.Entity<StudentTask>().HasKey(x => new { x.RequestId, x.StudentId });
+            builder.Entity<Article>()
+                 .HasOne(c => c.ArticleCategory)
+                 .WithMany(c => c.Articles)
+                 .IsRequired()
+                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder.Entity<Room>()
+              .HasOne(c => c.RoomCategory)
+              .WithMany(c => c.Rooms)
+              .IsRequired()
+              .OnDelete(DeleteBehavior.Cascade);
         }
 
         public override int SaveChanges()
