@@ -1,0 +1,316 @@
+﻿@{
+    ViewData["Title"] = "Chi tiết loại phòng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string url = Convert.ToString(ViewBag.Url);
+    var roomCategory = ViewBag.RoomCategory as RoomCategoryViewModel;
+
+}
+
+@section metatags {
+    <vc:vc-metatag key-word="" description="" />
+}
+<!-- Content -->
+<main class="main">
+    <!-- Intro -->
+    <section class="intro">
+        <div class="intro__bg-wrap">
+            <div class="overlay intro__bg js-image js-parallax js-scale-down" data-image="/assets/images/image_room_06.jpg"></div>
+        </div>
+        <div class="container intro__container">
+            <div class="row h-100 align-items-center align-items-center justify-content-center">
+                <div class="col-12 col-xl-8 text-center">
+                    <span class="title title--overhead text-white js-lines">@roomCategory.Description</span> 
+                    <h1 class="title title--display-1 js-lines">@roomCategory.Name</h1>
+                </div>
+            </div>
+        </div>
+        <!-- Scroll To -->
+        <a class="scroll-to" href="%21.html#content">Scroll<span class="scroll-to__line"></span></a>
+    </section>
+    <!-- /Intro -->
+    <!-- Room base info -->
+    <div class="bottom-panel bottom-panelRoom">
+        <div class="bottom-panel__wrap">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 col-md-12 col-xl-8">
+                    <div class="row room-details">
+                        <div class="col room-details__item slash">
+                            <i class="icon-maximize"></i>@roomCategory.Size m²
+                        </div>
+                        <div class="col room-details__item slash">
+                            <i class="icon-bed"></i>@roomCategory.BedType
+                        </div>
+                        @*<div class="col-4 room-details__item"><i class="icon-bath"></i>2 Bath<span>room</span></div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Room base info -->
+    <!-- Content -->
+    <section id="content" class="container">
+        <div class="row">
+            <div class="col-md-12 col-xl-8 order-2 order-xl-1 mt-4 mt-sm-5">
+                <!-- Description room -->
+                <h3 class="title title--h3">Mô tả</h3>
+                <p>@roomCategory.Description</p>
+
+                <!-- Amenity -->
+                <h3 class="title title--h3 mt-4 mt-sm-5">Tiện nghi</h3>
+                <div class="row">
+                    <ul class="list-unstyled list-feature col-12 col-md-4">
+                        <li class="list-feature__item">
+                            <img class="icon icon--24" src="/assets/icons/icon-parking.svg" alt="" />
+                            Đậu xe miễn phí
+                        </li>
+                        <li class="list-feature__item">
+                            <img class="icon icon--24" src="/assets/icons/icon-wifi.svg" alt="" />
+                            Wi-Fi tốc độ cao
+                        </li>
+                        <li class="list-feature__item">
+                            <img class="icon icon--24" src="/assets/icons/icon-spa.svg" alt="" />
+                            SPA Services
+                        </li>
+                        <li class="list-feature__item">
+                            <img class="icon icon--24" src="/assets/icons/icon-sport.svg" alt="" />
+                            Gym
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled list-feature col-12 col-md-4">
+                        <li class="list-feature__item">
+                            <img class="icon icon--24" src="/assets/icons/icon-elevator.svg" alt="" />
+                            Thang máy
+                        </li>
+                        <li class="list-feature__item">
+                            <img class="icon icon--24" src="/assets/icons/icon-tv.svg" alt="" />
+                            Truyền hình CAP
+                        </li>
+                        <li class="list-feature__item">
+                            <img class="icon icon--24" src="/assets/icons/icon-kitchen.svg" alt="" />
+                            Phòng bếp
+                        </li>
+                        <li class="list-feature__item">
+                            <img class="icon icon--24" src="/assets/icons/icon-pool.svg" alt="" />
+                            Bể bơi
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled list-feature col-12 col-md-4">
+                        <li class="list-feature__item">
+                            <img class="icon icon--24" src="/assets/icons/icon-coffee-maker.svg" alt="" />
+                            Máy cà phê
+                        </li>
+                        <li class="list-feature__item">
+                            <img class="icon icon--24" src="/assets/icons/icon-conditioner.svg" alt="" />
+                            Máy lạnh
+                        </li>
+                        <li class="list-feature__item">
+                            <img class="icon icon--24" src="/assets/icons/icon-hair-dryer.svg" alt="" />
+                            Máy sấy
+                        </li>
+                        <li class="list-feature__item">
+                            <img class="icon icon--24" src="/assets/icons/icon-washer.svg" alt="" />
+                            Máy giặt
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Gallery slider -->
+                    @if (roomCategory.ImageList.SplitImages(";").Length > 0)
+                    {
+                        <div class="slider-room ltr swiper-container mt-3">
+                                            <div class="swiper-wrapper">
+
+                                                @foreach (var item in roomCategory.ImageList.SplitImages(";"))
+                                                {
+                                                    <div class="swiper-slide">
+                                                        <div class="coverSlider js-image" data-image="@item" data-url="@url"></div>
+                                                    </div>
+                                                }
+                                            </div>
+
+                            <!-- Navigation -->
+                            <div class="swiper-control swiper-control--bottom">
+                                <div class="slash">
+                                    <div class="swiper-button-next swiper-button-square">
+                                        <i class="icon-chevron-left"></i>
+                                    </div>
+                                    <div class="swiper-button-prev swiper-button-square">
+                                        <i class="icon-chevron-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    }
+
+
+                <!-- /Gallery slider -->
+                <!-- Rating & Review -->
+                <h3 class="title title--h3">24 Nhận xét</h3>
+                <div class="row">
+                    <!-- Progress bar -->
+                    <div class="col-12 col-md-6 progressBar">
+                        <div class="progressBar__label">Tiện nghi<span class="">7.5</span></div>
+                        <div class="progressBar__wrap">
+                            <div class="progressBar__current" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div class="col-12 col-md-6 progressBar">
+                        <div class="progressBar__label">Đồ ăn<span class="">6.3</span></div>
+                        <div class="progressBar__wrap">
+                            <div class="progressBar__current" role="progressbar" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div class="col-12 col-md-6 progressBar">
+                        <div class="progressBar__label">Vật chất<span class="">8.6</span></div>
+                        <div class="progressBar__wrap">
+                            <div class="progressBar__current" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div class="col-12 col-md-6 progressBar">
+                        <div class="progressBar__label">Vị trí<span class="">9.0</span></div>
+                        <div class="progressBar__wrap">
+                            <div class="progressBar__current" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div class="col-12 col-md-6 progressBar">
+                        <div class="progressBar__label">Nhân viên<span class="">9.2</span></div>
+                        <div class="progressBar__wrap">
+                            <div class="progressBar__current" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div class="col-12 col-md-6 progressBar">
+                        <div class="progressBar__label">Tỷ lệ giá cả chất lượng<span class="">7.6</span></div>
+                        <div class="progressBar__wrap">
+                            <div class="progressBar__current" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="mt-4">-->
+                <!-- Review item -->
+                <!--<div class="testimonials-item testimonials-item--v2 js-scroll-show">
+        <h4 class="title title--h5">Best hotel!</h4>
+        <p class="testimonials-item__caption">The hotel has everything you need. On the ground floor there is a lobby bar, on the second floor there is a zone with an indoor pool and sauna, on the seventh floor there is a restaurant and spa-salon. The rooms are cleaned every day.</p>
+        <div class="author-wrap">
+            <div class="author-picture"><img class="cover" src="/assets/images/person.jpg" alt="Jacob Lane" /></div>
+            <div>
+                <div class="author-name">Jacob Lane</div>
+                <div class="author-country">from USA</div>
+            </div>
+        </div>
+    </div>-->
+                <!-- /Review item -->
+                <!-- Review item -->
+                <!--<div class="testimonials-item testimonials-item--v2 js-scroll-show">
+        <h4 class="title title--h5">Comfortable hotel.</h4>
+        <p class="testimonials-item__caption">Well, what can I say, every year, day and hour, this place is being transformed for the better. The staff is completely competent and friendly, Everything around is blooming, pleasing, nourishing and making the holiday bright.</p>
+        <div class="author-wrap">
+            <div class="author-picture"><img class="cover" src="/assets/images/person2.jpg" alt="Victoria Wilson" /></div>
+            <div>
+                <div class="author-name">Victoria Wilson</div>
+                <div class="author-country">from France</div>
+            </div>
+        </div>
+    </div>-->
+                <!-- /Review item -->
+                <!-- Review item -->
+                <!--<div class="testimonials-item testimonials-item--v2 js-scroll-show">
+        <h4 class="title title--h5">The modern.</h4>
+        <p class="testimonials-item__caption">The modern 5 * Hotel Sochi Center is an ideal solution for combining business and leisure. Stylish design and exceptional service will satisfy the desires of any guest. 150 rooms with balcony (non-smoking), sea view, trendy restaurant.</p>
+        <div class="author-wrap">
+            <div class="author-picture"><img class="cover" src="/assets/images/person3.jpg" alt="Max Edwards" /></div>
+            <div>
+                <div class="author-name">Max Edwards</div>
+                <div class="author-country">from Germany</div>
+            </div>
+        </div>
+    </div>-->
+                <!-- /Review item -->
+                <!-- Pagination -->
+                <!--<div class="pagination justify-content-between justify-content-sm-center">
+            <a class="page-link page-link__control" href="#" aria-label="Prev"><i class="icon-arrow-left"></i></a>
+            <div class="d-flex">
+                <a class="page-link current" href="#">1</a>
+                <a class="page-link" href="#">2</a>
+                <a class="page-link" href="#">3</a>
+                <span class="page-link">...</span>
+                <a class="page-link" href="#">10</a>
+            </div>
+            <a class="page-link page-link__control" href="#" aria-label="Next"><i class="icon-arrow-right"></i></a>
+        </div>
+    </div>-->
+            </div>
+
+            <!-- Sidebar Booking -->
+            <div class="col-md-12 col-xl-4 order-1 order-xl-2">
+                <div class="sidebar-booking">
+                    <div class="sidebar-booking__priceWrap">
+                        <div class="priceWrap-title">Giá phòng</div>
+                        <div class="priceWrap-price">@roomCategory.Price.ToCurrency()<span>đêm</span></div>
+                    </div>
+
+                    <div class="sidebar-booking__wrap">
+                        <!-- Dates -->
+                        <div class="form-group ">
+                            <label class="label" for="check-in">Ngày</label>
+                            <div class="form-dual form-dual--mobile">
+                                <div class="form-dual__left">
+                                    <input type="text" class="inputText inputText__icon readonly js-datepicker" id="check-in" name="check-in" placeholder="Chọn ngày" required="required" autocomplete="off">
+                                    <span class="input-icon icon-calendar"></span>
+                                </div>
+                                <div class="form-dual__right">
+                                    <input type="text" class="inputText inputText__icon readonly js-datepicker" id="check-out" name="check-out" placeholder="Chọn ngày" required="required" autocomplete="off">
+                                    <span class="input-icon icon-calendar"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Persons -->
+                            <div class="col-12 col-sm-6 form-group">
+                                <label class="label" for="person-adult">Người lớn</label>
+                                <div class="js-quantity">
+                                    <span class="qty-minus icon-minus"></span>
+                                    <input type="number" class="inputText js-quantity-input readonly" id="person-adult" name="person-adult" value="0" min="1" max="8" required="required" autocomplete="off">
+                                    <span class="qty-plus icon-plus"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 form-group">
+                                <label class="label" for="person-kids">Trẻ em</label>
+                                <div class="js-quantity">
+                                    <span class="qty-minus icon-minus"></span>
+                                    <input type="number" class="inputText js-quantity-input readonly" id="person-kids" name="person-kids" value="0" min="0" max="8" autocomplete="off">
+                                    <span class="qty-plus icon-plus"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-1">
+                                <a  href="/dat-phong" class="btn btn__medium w-100">Đặt phòng</a>
+                            </div>
+                            <span class="sidebar-booking__note">Until you pay for anything</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map -->
+                <div class="map-sidebar" id="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d501288.65769124!2d107.92424892657849!3d11.014777655176106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3176c3f2d68f59a1%3A0x2737428edf34c28e!2zQsOsbmggVGh14bqtbiwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1653730211190!5m2!1svi!2s" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <!-- /Sidebar Booking -->
+        </div>
+    </section>
+    <!-- /Content -->
+</main>
+<!-- /Content -->

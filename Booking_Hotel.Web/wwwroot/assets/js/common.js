@@ -43,6 +43,7 @@
 'use strict';
 $(document).ready(function() {
 
+
     /*-----------------------------------------------------------------
       01. Detect device mobile
     -------------------------------------------------------------------*/
@@ -119,7 +120,7 @@ $(document).ready(function() {
       04. Toggle Navbar
     -------------------------------------------------------------------*/
     
-	$('.sticky').each(function() {
+    $('.sticky').each(function () {
         var nav = $('.sticky'),
             body = $('body'),
             windowScreen = $(window),
@@ -247,18 +248,19 @@ $(document).ready(function() {
 		if (sliderPrice) {
 		    var priceFormat = wNumb({
                 decimals: 0,
-			    mark: '.',
-		        prefix: '$ '
+                thousand: ',',
+                prefix: '',
+                suffix: ' ₫'
             });
         
             noUiSlider.create(sliderPrice, {
-	            start: [49, 129],
-	            step: 1,
+	            start: [500000, 10000000],
+	            step: 100000,
 	            connect: true,
 			    format: priceFormat,
 	            range: {
-		            'min': [49],
-		            'max': [259]
+                    'min': [500000],
+                    'max': [10000000]
 	            }
             });
 		
@@ -746,7 +748,12 @@ $(document).ready(function() {
   
     $('.js-image').each(function(){
         var dataImage = $(this).attr('data-image');
-        $(this).css('background-image', 'url(' + dataImage + ')');
+        var dataUrl = $(this).attr('data-url');
+        if (dataUrl && dataImage) {
+            $(this).css('background-image', 'url(' + dataUrl + dataImage + ')');
+        } else {
+            $(this).css('background-image', 'url(' + dataImage + ')');
+        }
     });
 
 

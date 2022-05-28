@@ -13,13 +13,13 @@ namespace Booking_Hotel.Web.Controllers
     public class ContactController : Controller
     {
         #region Fields
-        private readonly ILogger<RoomController> _logger;
+        private readonly ILogger<RoomCategoryController> _logger;
         private readonly IOptions<Config> _config;
         private readonly HttpClient client;
         #endregion
 
         #region Ctor
-        public ContactController(ILogger<RoomController> logger, IHttpClientFactory clientFactory, IOptions<Config> config)
+        public ContactController(ILogger<RoomCategoryController> logger, IHttpClientFactory clientFactory, IOptions<Config> config)
         {
             client = clientFactory.CreateClient("default");
             _logger = logger;

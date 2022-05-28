@@ -70,10 +70,11 @@ namespace Booking_Hotel.Web.Controllers
                 string jsonArticleCategory = responseArticleCategory.Content.ReadAsStringAsync().Result;
                 ArticleCategoryViewModel dataArticleCategory = JsonConvert.DeserializeObject<ArticleCategoryViewModel>(jsonArticleCategory);
                 ViewBag.ArticleCategory = dataArticleCategory;
+                ViewBag.Article = dataTemp;
             }
 
 
-            return View(data);
+            return View();
         }
         [Route("/tin-tuc/chi-tiet/{id?}/{catid?}/{title?}", Name = "article-detail")]
         public async Task<IActionResult> Detail(int ID = 0, int catID = 1, string title = "")
@@ -91,7 +92,7 @@ namespace Booking_Hotel.Web.Controllers
             ViewBag.Url = _config.Value.ApiUrl;
             ViewBag.ID = ID;
             ViewBag.CatID = catID;
-            return View(data);
+            return View();
         }
 
     }

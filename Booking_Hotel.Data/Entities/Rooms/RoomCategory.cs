@@ -18,9 +18,20 @@ namespace Booking_Hotel.Data.Entities.Rooms
         public string Code { get; set; }
 
         public string Description { get; set; }
+        public float Price { get; set; }
+        public int Size { get; set; }
+        [StringLength(4000)]
+        public string ImageList { get; set; }
+        [StringLength(512)]
+        public string UrlImage { get; set; }
+        public int Person { get; set; }
+        public int Children { get; set; }
+
+        [StringLength(256)]
+        public string BedType { get; set; }
 
         public int Position { get; set; }
-
+      
         public string MetaTile { get; set; }
         public string MetaKeyWord { get; set; }
         public string MetaDescription { get; set; }

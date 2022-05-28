@@ -186,6 +186,14 @@ namespace Booking_Hotel.Web
 
             return imageList.Trim().Split('\n');
         }
-      
+        public static string[] SplitImages(this string imageList, string charactor)
+        {
+            string val = charactor.IsNullOrEmpty() ? "\n" : charactor;
+            if (imageList == null)
+                return new string[0];
+
+            return imageList.Trim().Split(val);
+        }
+
     }
 }

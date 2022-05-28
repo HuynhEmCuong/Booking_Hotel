@@ -1,4 +1,7 @@
-﻿@{
+﻿@model AboutViewModel
+
+
+@{
     ViewData["Title"] = "About us";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -8,12 +11,12 @@
     <!-- Intro -->
     <section class="intro">
         <div class="intro__bg-wrap">
-            <div class="overlay intro__bg js-image js-parallax js-scale-down" data-image="assets/images/intro_about.jpg"></div>
+            <div class="overlay intro__bg js-image js-parallax js-scale-down" data-image="/assets/images/intro_about.jpg"></div>
         </div>
         <div class="container intro__container">
             <div class="row h-100 align-items-center">
                 <div class="col-12 col-md-12 col-xl-8">
-                    <span class="title title--overhead text-white js-lines">Welcome to Sochi Hotel</span>
+                    <span class="title title--overhead text-white js-lines">Chào mừng đến với Khách Sạn</span>
                     <h1 class="title title--display-1 js-lines">About Sochi.</h1>
                 </div>
             </div>
@@ -29,12 +32,12 @@
                 <div class="col-12">
                     <div class="row ">
                         <div class="col-12 col-md-6 col-lg-4 mb-2 mb-sm-4 mb-md-0">
-                            <div class="bottom-panel-title">Got a questions?</div>
-                            <span class="bottom-panel-info">hello@hotelsochi.com</span>
+                            <div class="bottom-panel-title">Đặt câu hỏi?</div>
+                            <span class="bottom-panel-info">phamtiensy8696@gmail.com</span>
                         </div>
                         <div class="col-12 col-md-6 col-lg-4 mb-2 mb-sm4 mb-md-0">
-                            <div class="bottom-panel-title">For partners</div>
-                            <span class="bottom-panel-info">partners@hotelsochi.com</span>
+                            <div class="bottom-panel-title">Đối tác</div>
+                            <span class="bottom-panel-info">phamtiensy8696@gmail.com</span>
                         </div>
                     </div>
                 </div>
@@ -46,8 +49,8 @@
     <section id="about" class="container section">
         <div class="row">
             <div class="col-12 col-lg-5">
-                <span class="title title--overhead js-lines">Our story</span>
-                <h1 class="title title--h1 js-lines">A Brief History of Sochi Hotel.</h1>
+                <span class="title title--overhead js-lines">Lịch sử phát triển</span>
+                <h1 class="title title--h1 js-lines">Vài nét về lịch sử khách sạn. </h1>
             </div>
             <div class="col-12 col-lg-6 offset-lg-1 offset-top">
                 <p class="paragraph js-scroll-show">The humid subtropical climate, high mountains, exotic vegetation, endless beaches, national parks, historic architecture, exciting attraction sites, art festivals and lively multicultural environment make Sochi a prominent resort destination.</p>
@@ -58,22 +61,22 @@
                 <div class="swiper-wrapper">
                     <!-- Slide 1 -->
                     <div class="swiper-slide">
-                        <div class="coverSlider js-image" data-image="assets/images/image_header_04.jpg"></div>
+                        <div class="coverSlider js-image" data-image="/assets/images/image_header_04.jpg"></div>
                     </div>
 
                     <!-- Slide 2 -->
                     <div class="swiper-slide">
-                        <div class="coverSlider js-image" data-image="assets/images/about_image_02.jpg"></div>
+                        <div class="coverSlider js-image" data-image="/assets/images/about_image_02.jpg"></div>
                     </div>
 
                     <!-- Slide 3 -->
                     <div class="swiper-slide">
-                        <div class="coverSlider js-image" data-image="assets/images/image_header_04.jpg"></div>
+                        <div class="coverSlider js-image" data-image="/assets/images/image_header_04.jpg"></div>
                     </div>
 
                     <!-- Slide 4 -->
                     <div class="swiper-slide">
-                        <div class="coverSlider js-image" data-image="assets/images/image_header_03.jpg"></div>
+                        <div class="coverSlider js-image" data-image="/assets/images/image_header_03.jpg"></div>
                     </div>
                 </div>
 
@@ -94,7 +97,7 @@
     <section class="container section">
         <div class="row mb-4 mb-md-5">
             <div class="col-12">
-                <span class="title title--overhead js-lines">What do we offer</span>
+                <span class="title title--overhead js-lines">Chúng tôi cung cấp những gì</span>
                 <h1 class="title title--h1 js-lines">Our approach.</h1>
             </div>
         </div>
@@ -102,7 +105,7 @@
         <!-- Item Approach -->
         <div class="row item-approach" data-approach="01">
             <div class="col-12 col-lg-6">
-                <h3 class="title title--h3 js-lines">Service Quality</h3>
+                <h3 class="title title--h3 js-lines">Chất lượng dịch vụ</h3>
             </div>
             <div class="col-12 col-lg-6">
                 <p class="paragraph js-scroll-show">Service quality in the hospitality industry becomes one of the most important factors for gaining a sustainable competitive advantage and customers’ confidence in the highly competitive marketplace, and therefore service quality can give the hospitality industry a great chance to create competitive differentiation for organizations.</p>
@@ -113,7 +116,7 @@
         <!-- Item Approach -->
         <div class="row item-approach" data-approach="02">
             <div class="col-12 col-lg-6">
-                <h3 class="title title--h3 js-lines">Friendly Staff</h3>
+                <h3 class="title title--h3 js-lines">Nhân viên thân thiện</h3>
             </div>
             <div class="col-12 col-lg-6">
                 <p class="paragraph js-scroll-show">Happy customers are loyal customers. Not only is it important for we to provide stellar service, but awesome products as well. </p>
@@ -124,7 +127,7 @@
         <!-- Item Approach -->
         <div class="row item-approach item-approach__last" data-approach="03">
             <div class="col-12 col-lg-6">
-                <h3 class="title title--h3 js-lines">Customer Satisfaction</h3>
+                <h3 class="title title--h3 js-lines">Sự hài lòng của khách hàng</h3>
             </div>
             <div class="col-12 col-lg-6">
                 <p class="paragraph js-scroll-show">Customer satisfaction is a psychological concept that involves the feeling of well-being and pleasure that results from obtaining what one hopes for and expects from an appealing product and/or service. Customer satisfaction definition is based on the expectation disconfirmation point of view!</p>
@@ -135,12 +138,12 @@
     <!-- Section Video -->
     <div class="section">
         <div class="video-container js-video youtube-video-place" data-yt-url="https://www.youtube.com/embed/HSsqzzuGTPo?autoplay=1&amp;">
-            <div class="video__poster js-image js-parallax" data-image="assets/images/cover_video.jpg">
+            <div class="video__poster js-image js-parallax" data-image="/assets/images/cover_video.jpg">
                 <button class="video__btn" type="button"></button>
             </div>
             <div class="video-note">
-                <div class="bottom-panel-title">Hotel Sochi</div>
-                <span class="bottom-panel-info">Start your amazing journey.</span>
+                <div class="bottom-panel-title">My Hotel</div>
+                <span class="bottom-panel-info">Bắt đầu cuộc hành trình tuyệt vời của bạn.</span>
             </div>
         </div>
     </div>
@@ -158,7 +161,7 @@
             <div class="col-12 col-md-6 col-lg-4 js-scroll-show">
                 <div class="itemPerson">
                     <figure class="itemPerson__img-wrap">
-                        <img class="cover lazyload" src="assets/images/team-person1.jpg" alt="Robert Fox" />
+                        <img class="cover lazyload" src="/assets/images/team-person1.jpg" alt="Robert Fox" />
                     </figure>
                     <div class="itemPerson__details">
                         <h4 class="title title--h4">Robert Fox</h4>
@@ -171,7 +174,7 @@
             <div class="col-12 col-md-6 col-lg-4 js-scroll-show">
                 <div class="itemPerson">
                     <figure class="itemPerson__img-wrap">
-                        <img class="cover lazyload" src="assets/images/team-person2.jpg" alt="Kristin Mccoy" />
+                        <img class="cover lazyload" src="/assets/images/team-person2.jpg" alt="Kristin Mccoy" />
                     </figure>
                     <div class="itemPerson__details">
                         <h4 class="title title--h4">Kristin Mccoy</h4>
@@ -184,7 +187,7 @@
             <div class="col-12 col-md-6 col-lg-4 js-scroll-show">
                 <div class="itemPerson">
                     <figure class="itemPerson__img-wrap">
-                        <img class="cover lazyload" src="assets/images/team-person3.jpg" alt="Shane Watson" />
+                        <img class="cover lazyload" src="/assets/images/team-person3.jpg" alt="Shane Watson" />
                     </figure>
                     <div class="itemPerson__details">
                         <h4 class="title title--h4">Shane Watson</h4>
@@ -197,7 +200,7 @@
             <div class="col-12 col-md-6 col-lg-4 js-scroll-show">
                 <div class="itemPerson">
                     <figure class="itemPerson__img-wrap">
-                        <img class="cover lazyload" src="assets/images/team-person4.jpg" alt="Francisco Pena" />
+                        <img class="cover lazyload" src="/assets/images/team-person4.jpg" alt="Francisco Pena" />
                     </figure>
                     <div class="itemPerson__details">
                         <h4 class="title title--h4">Francisco Pena</h4>
@@ -210,7 +213,7 @@
             <div class="col-12 col-md-6 col-lg-4 js-scroll-show">
                 <div class="itemPerson">
                     <figure class="itemPerson__img-wrap">
-                        <img class="cover lazyload" src="assets/images/team-person5.jpg" alt="Calvin Flores" />
+                        <img class="cover lazyload" src="/assets/images/team-person5.jpg" alt="Calvin Flores" />
                     </figure>
                     <div class="itemPerson__details">
                         <h4 class="title title--h4">Calvin Flores</h4>
@@ -223,7 +226,7 @@
             <div class="col-12 col-md-6 col-lg-4 js-scroll-show">
                 <div class="itemPerson">
                     <figure class="itemPerson__img-wrap">
-                        <img class="cover lazyload" src="assets/images/team-person6.jpg" alt="Kathryn Cooper" />
+                        <img class="cover lazyload" src="/assets/images/team-person6.jpg" alt="Kathryn Cooper" />
                     </figure>
                     <div class="itemPerson__details">
                         <h4 class="title title--h4">Kathryn Cooper</h4>
@@ -239,8 +242,8 @@
         <div class="row cta-simply">
             <div class="col-12 col-lg-7">
                 <h2 class="title title--h2">Make room for adventure.</h2>
-                <p class="paragraph">Book your room right now and start your amazing adventure full of discoveries and experiences with Sochi.</p>
-                <a href="rooms.html" class="btn btn__large">Reservations <i class="btn-icon-right icon-arrow-special"></i></a>
+                <p class="paragraph">Book your room right now and start your amazing adventure full of discoveries and experiences with My Hotel.</p>
+                <a href="/loai-phong" class="btn btn__large">Đặt phòng ngay <i class="btn-icon-right icon-arrow-special"></i></a>
             </div>
         </div>
     </section>

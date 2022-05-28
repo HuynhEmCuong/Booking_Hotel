@@ -1,12 +1,12 @@
-﻿@using  System.Security.Claims;
+﻿@*@using  System.Security.Claims;*@
 @{
-    var accountType = "";
-    var userName = "";
-    if (string.IsNullOrEmpty(User.Identity.Name) == false)
-    {
-        accountType = User.Claims.FirstOrDefault(x => x.Type.Equals("AccountType"))?.Value;
-        userName = User.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.NameIdentifier))?.Value;
-    }
+//var accountType = "";
+//var userName = "";
+//if (string.IsNullOrEmpty(User.Identity.Name) == false)
+//{
+//    accountType = User.Claims.FirstOrDefault(x => x.Type.Equals("AccountType"))?.Value;
+//    userName = User.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.NameIdentifier))?.Value;
+//}
 
 }
 
@@ -31,6 +31,7 @@
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="/assets/styles/style.css" />
     <link rel="stylesheet" type="text/css" href="/assets/demo/style-demo.css" />
+    <link href="~/css/site.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
 
 </head>
@@ -52,9 +53,9 @@
     <footer class="footer">
         <div class="footer__left">
             <ul class="footer__info">
-                <li>© 2019 Sochi Hotel</li>
-                <li><a href="text-page.html">Terms & Conditions</a></li>
-                <li><a href="text-page.html">Privacy Policy</a></li>
+                <li>© 2022 Henry Pham</li>
+                <li><a href="text-page.html">Điều khoản và điều kiện</a></li>
+                <li><a href="text-page.html">Chính sách bảo mật</a></li>
             </ul>
         </div>
         <ul class="footer__social">
@@ -64,42 +65,14 @@
         </ul>
     </footer>
 
-    <!-- Button Live Chat -->
-    <div class="btn-floating js-show-to-scroll"><i class="icon-bubble"></i></div>
-
-    <!-- Demo Menu -->
-    <div class="btnSlideNav slideOpen"></div>
-    <div class="btnSlideNav slideClose"></div>
-    <ul class="slideNav">
-        <li class="slideNav__item rtl-mode"><h4 class="title title--5">More pages</h4> <a href="rtl/home.html">RTL</a></li>
-        <li class="slideNav__item"><a href="home.html">01. Homepage</a></li>
-        <li class="slideNav__item"><a href="home_v2.html">02. Homepage v2</a></li>
-        <li class="slideNav__item"><a href="about.html">03. About Us</a></li>
-        <li class="slideNav__item"><a href="rooms.html">04. Rooms</a></li>
-        <li class="slideNav__item"><a href="rooms_v2.html">05. Rooms v2</a></li>
-        <li class="slideNav__item"><a href="room_details.html">06. Room Details</a></li>
-        <li class="slideNav__item"><a href="room_details_v2.html">07. Room Details v2</a></li>
-        <li class="slideNav__item"><a href="blog.html">08. Blog</a></li>
-        <li class="slideNav__item"><a href="blog_post.html">09. Post</a></li>
-        <li class="slideNav__item"><a href="gallery.html">10. Gallery</a></li>
-        <li class="slideNav__item"><a href="contact.html">11. Contact</a></li>
-        <li class="slideNav__item"><a href="reservations.html">12. Reservations</a></li>
-        <li class="slideNav__item"><a href="reservations_confirmation.html">13. Reservations Confirmation</a> <!--<span class="lable-new">New</span>--></li>
-        <li class="slideNav__item"><a href="payment.html">14. Payment</a></li>
-        <li class="slideNav__item"><a href="text-page.html">15. Text page</a></li>
-        <li class="slideNav__item"><a href="404.html">16. 404</a></li>
-    </ul>
-    <div class="overlay-slideNav"></div>
-    <!-- Demo Menu -->
     <!-- JavaScripts -->
-    <script src="assets/js/jquery-3.4.1.min.js"></script>
-    <script src="assets/js/plugins.min.js"></script>
-    <script src="assets/js/common.js"></script>
-    <script src="assets/js/mapbox.init.js"></script>
-    <script src="assets/demo/plugins-demo.js"></script>
+    <script src="/assets/js/jquery-3.4.1.min.js"></script>
+    <script src="/assets/js/plugins.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+
+    <script src="~/js/site.js"></script>
     @RenderSection("Scripts", required: false)
 
 </body>
 
-<!-- Mirrored from netgon.net/artstyles/sochi/home_v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 May 2022 16:29:09 GMT -->
 </html>

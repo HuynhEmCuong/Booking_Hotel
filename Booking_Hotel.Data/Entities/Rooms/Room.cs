@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Booking_Hotel.Data.Entities.Rooms
 {
-    public class Room : IDateTracking, IUserTracking, ISeoTracking
+    public class Room : IDateTracking, IUserTracking
     {
         [Key]
         public int Id { get; set; }
@@ -23,20 +23,12 @@ namespace Booking_Hotel.Data.Entities.Rooms
 
         public int  Position { get; set; }
 
-        public int Person { get; set; }
-
-        public int Children { get; set; }
-
-        public string UrlImage { get; set; }
-
         public Status Status { get; set; }
 
         public int RoomCateId { get; set; }
 
         public int RoomStatusId { get; set; }
-        public string MetaTile { get; set; }
-        public string MetaKeyWord { get; set; }
-        public string MetaDescription { get; set; }
+     
         public int? CreateBy { get; set; }
         public int? ModifyBy { get; set; }
         public DateTime? CreateDate { get; set; }

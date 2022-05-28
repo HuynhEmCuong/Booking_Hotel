@@ -13,12 +13,11 @@
         accountType = User.Claims.FirstOrDefault(x => x.Type.Equals("AccountType"))?.Value;
         userName = User.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.NameIdentifier))?.Value;
     }
-
 }
 <header class="header">
-    <nav class="navbar navbar-white navbar-overlay">
-        <a class="logo-link" href="home_v2.html">
-            <img class="logotype" src="/assets/images/ui/logo-white.svg" alt="Sochi">
+    <nav class="navbar">
+        <a class="logo-link" href="/">
+            <img class="logotype" id="logotype" src="/assets/images/ui/logo-black.svg" alt="logo">
         </a>
         <div class="navbar__menu">
             <button class="hamburger" type="button">
@@ -28,9 +27,9 @@
             <ul class="nav">
                 <li class="nav__item _is-current"><a class="nav__link" href="/"><span data-hover="Trang chủ">Trang chủ</span></a></li>
                 <li class="nav__item _is-current">
-                    <a class="nav__link" href="/phong"><span data-hover="Phòng">Phòng</span></a>
+                    <a class="nav__link" href="/loai-phong"><span data-hover="Loại phòng">Loại phòng</span></a>
                 </li>
-               
+
                 <li class="nav__item"><a class="nav__link" href="/gioi-thieu"><span data-hover="About Us">About Us</span></a></li>
                 <li class="nav__item"><a class="nav__link" href="/tin-tuc"><span data-hover="Tin tức">Tin tức</span></a></li>
                 <li class="nav__item"><a class="nav__link" href="/lien-he"><span data-hover="Liên hệ">Liên hệ</span></a></li>
@@ -38,7 +37,14 @@
             </ul>
         </div>
         <div class="navbar__btn">
-            <a class="btn btn__medium" href="/dat-phong"><i class="btn-icon-left icon-bookmark"></i>Đặt phòng</a>
+            <a class="btn btn__medium" href="/loai-phong"><i class="btn-icon-left icon-bookmark"></i>Đặt phòng</a>
         </div>
     </nav>
 </header>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+        });
+    </script>
+}

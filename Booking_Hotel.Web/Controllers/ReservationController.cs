@@ -23,6 +23,10 @@ namespace Booking_Hotel.Web.Controllers
             return View();
         }
 
-    
+        [Route("/thanh-toan", Name = "pay")]
+        public IActionResult Payment()
+        {
+            return View();
+        }
     }
 }

@@ -4,6 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20220528034307_AddSlider.cs" />
+    <Compile Remove="Migrations\20220528034307_AddSlider.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <None Remove="appsettings.Development.json" />

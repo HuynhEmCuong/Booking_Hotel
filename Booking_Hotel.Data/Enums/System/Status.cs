@@ -8,8 +8,8 @@ namespace Booking_Hotel.Data.Enums
     {
 
         Active =1,
-        DeActive,
-
+        DeActive
+     
 
     }
 }

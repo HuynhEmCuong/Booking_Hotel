@@ -1,0 +1,61 @@
+﻿@model IEnumerable<RoomCategoryViewModel>
+@{
+    string url = Convert.ToString(ViewBag.Url);
+}
+
+@if (Model != null)
+{
+    <section class="container section">
+        <div class="row align-items-end">
+            <div class="col-12 col-md-12 col-lg-8">
+                <span class="title title--overhead js-lines">Phòng</span>
+                <h1 class="title title--h1 js-lines">Loại phòng.</h1>
+            </div>
+            <div class="col-12 col-md-12 col-lg-4 text-lg-right d-none d-md-block">
+                <a class="btn-link header-btn-more" href="/load-phong">Xem tất cả phòng</a>
+            </div>
+        </div>
+
+        <!-- Grid -->
+        <div class="row">
+            <div class="col-12">
+                <div class="swiper-container js-rooms">
+                    <div class="swiper-wrapper">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-12 col-md-6 col-lg-4 js-scroll-show">
+                                <!-- ItemRoom extended -->
+                                <div class="itemRoom itemRoom__extended">
+                                    <figure class="itemRoom__img-wrap">
+                                        <a class="itemRoom__link"
+                                           asp-route-id="@item.Id"
+                                           asp-route-title="@item.Name.UrlEncode()"
+                                           asp-route="room-category-detail">
+                                            <img class="cover lazyload" src="@item.UrlImage.ToImage(url)" alt="@item.Name" />
+                                        </a>
+                                        <div class="itemRoom__details">
+                                            <h4 class="title title--h4">@item.Name</h4>
+                                            @if (@item.Price > 0)
+                                            {
+                                                <div class="itemRoom__price">@item.Price.ToCurrency()<span>đêm</span></div>
+                                            }
+                                        </div>
+                                    </figure>
+
+                                    <div class="itemRoom__details-extended">
+                                        @*<div class="item-extended"><i class="icon-map-pin"></i>Adler</div>*@
+                                        <div class="item-extended mr-4"><i class="icon-maximize"></i>@item.Size m²</div>
+                                        <div class="item-extended"><i class="icon-bed"></i>@item.BedType</div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Pagination  -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

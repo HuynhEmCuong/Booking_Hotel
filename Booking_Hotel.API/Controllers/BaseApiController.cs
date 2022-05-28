@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Booking_Hotel.Controllers
 {
     [Produces("application/json")]
-    [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class BaseApiController : Controller
     {

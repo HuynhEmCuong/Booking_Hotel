@@ -28,9 +28,9 @@
 
 	<ItemGroup>
 	  <Folder Include="wwwroot\FileUpload\Headers\" />
-	  <Folder Include="wwwroot\FileUpload\RoomsCategory\" />
 	  <Folder Include="wwwroot\FileUpload\ArticlesCategory\" />
 	  <Folder Include="wwwroot\FileUpload\Articles\" />
+	  <Folder Include="wwwroot\FileUpload\Rooms\" />
 	</ItemGroup>
 
 

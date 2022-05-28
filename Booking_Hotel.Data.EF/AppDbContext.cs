@@ -32,6 +32,7 @@ namespace Booking_Hotel.Data.EF
         public DbSet<RoomCategory> RoomCategories { get; set; }
 
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<RoomStatus> RoomStatus { get; set; }
 
         public DbSet<Reservation> Reservations { get; set; }
 
@@ -47,6 +48,7 @@ namespace Booking_Hotel.Data.EF
 
 
         public DbSet<EmailLog> EmailLogs { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
