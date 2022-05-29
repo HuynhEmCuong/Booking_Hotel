@@ -260,17 +260,21 @@
                         <div class="priceWrap-price">@roomCategory.Price.ToCurrency()<span>đêm</span></div>
                     </div>
 
-                    <div class="sidebar-booking__wrap">
+                    <form action="/dat-phong" method="post" class="sidebar-booking__wrap">
+                        <input id="room-category"
+                               name="RoomCatId"
+                               type="hidden"
+                               value="@roomCategory.Id" />
                         <!-- Dates -->
                         <div class="form-group ">
                             <label class="label" for="check-in">Ngày</label>
                             <div class="form-dual form-dual--mobile">
                                 <div class="form-dual__left">
-                                    <input type="text" class="inputText inputText__icon readonly js-datepicker" id="check-in" name="check-in" placeholder="Chọn ngày" required="required" autocomplete="off">
+                                    <input type="text" class="inputText inputText__icon readonly js-datepicker" id="check-in" name="CheckInDate" placeholder="Chọn ngày" required="required" autocomplete="off">
                                     <span class="input-icon icon-calendar"></span>
                                 </div>
                                 <div class="form-dual__right">
-                                    <input type="text" class="inputText inputText__icon readonly js-datepicker" id="check-out" name="check-out" placeholder="Chọn ngày" required="required" autocomplete="off">
+                                    <input type="text" class="inputText inputText__icon readonly js-datepicker" id="check-out" name="CheckOutDate" placeholder="Chọn ngày" required="required" autocomplete="off">
                                     <span class="input-icon icon-calendar"></span>
                                 </div>
                             </div>
@@ -282,7 +286,7 @@
                                 <label class="label" for="person-adult">Người lớn</label>
                                 <div class="js-quantity">
                                     <span class="qty-minus icon-minus"></span>
-                                    <input type="number" class="inputText js-quantity-input readonly" id="person-adult" name="person-adult" value="0" min="1" max="8" required="required" autocomplete="off">
+                                    <input type="number" class="inputText js-quantity-input readonly" id="person-adult" name="adult" value="0" min="1" max="8" required="required" autocomplete="off">
                                     <span class="qty-plus icon-plus"></span>
                                 </div>
                             </div>
@@ -290,17 +294,20 @@
                                 <label class="label" for="person-kids">Trẻ em</label>
                                 <div class="js-quantity">
                                     <span class="qty-minus icon-minus"></span>
-                                    <input type="number" class="inputText js-quantity-input readonly" id="person-kids" name="person-kids" value="0" min="0" max="8" autocomplete="off">
+                                    <input type="number" class="inputText js-quantity-input readonly" id="person-kids" name="kid" value="0" min="0" max="8" autocomplete="off">
                                     <span class="qty-plus icon-plus"></span>
                                 </div>
                             </div>
 
                             <div class="col-12 mt-1">
-                                <a  href="/dat-phong" class="btn btn__medium w-100">Đặt phòng</a>
+                                <button type="submit"
+                                        class="btn btn__medium w-100">
+                                    Đặt phòng
+                                </button>
                             </div>
                             <span class="sidebar-booking__note">Until you pay for anything</span>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
                 <!-- Map -->

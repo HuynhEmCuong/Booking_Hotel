@@ -3,6 +3,7 @@ using Booking_Hotel.Application.Services;
 using Booking_Hotel.Application.ViewModels;
 using Booking_Hotel.Controllers;
 using Booking_Hotel.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace Booking_Hotel.API.Controllers
             return Ok(await _service.GetAllAsync());
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult> AddAsync([FromBody] ReservationViewModel model)
         {

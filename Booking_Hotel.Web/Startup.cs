@@ -25,6 +25,8 @@ namespace Booking_Hotel.Web
         public void ConfigureServices(IServiceCollection services)
         {
             var config = Configuration.GetSection("Config").Get<Config>();
+            var paypal = Configuration.GetSection("PaypalSetting").Get<PaypalSetting>();
+            services.Configure<PaypalSetting>(Configuration.GetSection("PaypalSetting"));
             services.Configure<Config>(Configuration.GetSection("Config"));
             services.AddOptions();
             services.AddControllersWithViews();

@@ -1,6 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Đặt Phòng";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var data = ViewBag.Data as Booking_Hotel.Web.Models.ReservationFormViewModel;
+
 }
 <!-- Content -->
 <main class="main reservation-page">
@@ -8,7 +10,11 @@
         <div class="reservation-page__wrap">
             <h2 class="title title--h2 text-center">Đặt phòng</h2>
             <p class="paragraph text-center">Hãy đặt phòng ngay bây giờ và bắt đầu chuyến phiêu lưu kỳ thú đầy khám phá và trải nghiệm cùng chúng tôi.</p>
-            <form class="row mt-2 mt-sm-4">
+            <form id="go-to-confirm-form" class="row mt-2 mt-sm-4">
+                <input id="room-category"
+                       name="RoomCatId"
+                       type="hidden"
+                       value="@data.RoomCatId" />
                 <div class="col-12">
                     <div class="form-group">
                         <label class="label" for="name">Họ và tên</label>
@@ -70,12 +76,12 @@
                         </div>
                     </div>
                 </div>
-               
+
                 <div class="col-12 col-sm-6 mt-2 mt-sm-3 order-2 order-sm-1">
                     <a href="home.html" class="btn btn__medium btn__second w-100">Hủy</a>
                 </div>
                 <div class="col-12 col-sm-6 mt-2 mt-sm-3 order-1 order-sm-2">
-                    <a href="/thanh-toan" class="btn btn__medium w-100">Tiếp tục</a>
+                    <button type="submit" class="btn btn__medium w-100">Xác nhận</button>
                 </div>
             </form>
         </div>
@@ -83,3 +89,41 @@
     <div class="reservation-page__right js-image" data-image="/assets/images/image_header_02.jpg"></div>
 </main>
 <!-- /Content -->
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            const item = @Html.Raw(Json.Serialize(data));
+            $("#name").val('Phạm Tiến Sỹ');
+            $("#email").val('phamtiensy8696@gmail.com');
+            $("#phone").val('0967220032');
+            $("#check-in").val(item.checkInDate);
+            $("#check-out").val(item.checkOutDate);
+            $("#person-adult").val(item.adult);
+            $("#person-kids").val(item.kids);
+
+         
+            $("#go-to-confirm-form").validator({ focus: false }).on("submit", function (event) {
+                if (event.isDefaultPrevented()) {
+                    submitRservationMSG(false, "Vui lòng điền đầy đủ thông tin...");
+                } else {
+                    event.preventDefault();
+                    submitReservationForm();
+                }
+            });
+            function submitReservationForm() {
+                var checkIn = $("#check-in").val(),
+                    checkOut = $("#check-out").val(),
+                    adult = $("#person-adult").val(),
+                    roomCatId = $("#room-category").val(),
+                    name = $("#name").val(),
+                    email = $("#email").val(),
+                    phone = $("#phone").val(),
+                    kids = $("#person-kids").val();
+                let fullName = encodeURIComponent(name);
+                window.location = "/dat-phong/xac-nhan" + "?checkInDate=" + checkIn + "&checkOutDate=" + checkOut + "&roomCatID=" + roomCatId + "&adult=" + adult + "&kids=" + kids + "&fullName=" + fullName + "&email=" + email + "&phone=" + phone;
+
+            }
+        });
+    </script>
+}

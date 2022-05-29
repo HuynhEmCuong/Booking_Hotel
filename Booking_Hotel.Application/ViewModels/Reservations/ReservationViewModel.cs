@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Booking_Hotel.Application.ViewModels
 {
-    public class ReservationViewModel
+    public partial class ReservationViewModel
     {
         public int Id { get; set; }
    

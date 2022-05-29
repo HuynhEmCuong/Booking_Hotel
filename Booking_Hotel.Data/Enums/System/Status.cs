@@ -12,4 +12,12 @@ namespace Booking_Hotel.Data.Enums
      
 
     }
+    public enum RoomType
+    {
+
+        Available = 1,
+        NotAvailable
+
+
+    }
 }

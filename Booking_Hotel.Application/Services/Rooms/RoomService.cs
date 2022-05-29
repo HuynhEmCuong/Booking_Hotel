@@ -12,7 +12,7 @@ namespace Booking_Hotel.Application.Services
     public interface IRoomService : IBaseService<RoomViewModel>
     {
         Task<List<RoomViewModel>> GetAllByCatId(int catId);
-
+        Task<RoomViewModel> GetIsAvailableRoomByCat(int catId);
     }
     public class RoomService : BaseService<Room, RoomViewModel>, IRoomService
     {
@@ -32,6 +32,12 @@ namespace Booking_Hotel.Application.Services
         {
             var data = await _repository.FindAll(x => x.RoomCateId == catId).AsNoTracking().ToListAsync();
             return _mapper.Map<List<RoomViewModel>>(data);
+        }
+
+        public async Task<RoomViewModel> GetIsAvailableRoomByCat(int catId)
+        {
+            var model = await _repository.FindAll(x => x.Status == Data.Enums.Status.Active).Include(x => x.RoomCategory).FirstOrDefaultAsync();
+            return _mapper.Map<RoomViewModel>(model);
         }
     }
 }

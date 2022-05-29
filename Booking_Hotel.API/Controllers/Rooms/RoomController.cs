@@ -28,6 +28,12 @@ namespace Booking_Hotel.API.Controllers
         }
         [AllowAnonymous]
         [HttpGet]
+        public async Task<ActionResult> GetIsAvailableRoomByCat(int catId)
+        {
+            return Ok(await _service.GetIsAvailableRoomByCat(catId));
+        }
+        [AllowAnonymous]
+        [HttpGet]
         public async Task<ActionResult> GetAllAsync()
         {
             return Ok(await _service.GetAllAsync());

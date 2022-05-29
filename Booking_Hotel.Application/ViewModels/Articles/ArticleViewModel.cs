@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Booking_Hotel.Application.ViewModels
 {
-    public class ArticleViewModel
+    public partial class ArticleViewModel
     {
         public int Id { get; set; }
 

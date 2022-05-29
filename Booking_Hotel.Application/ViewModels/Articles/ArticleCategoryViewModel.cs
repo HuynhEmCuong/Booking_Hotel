@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Booking_Hotel.Application.ViewModels
 {
-    public class ArticleCategoryViewModel
+    public partial class ArticleCategoryViewModel
     {
         public int Id { get; set; }
 

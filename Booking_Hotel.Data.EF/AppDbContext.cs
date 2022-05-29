@@ -125,14 +125,18 @@ namespace Booking_Hotel.Data.EF
             if (httpContext != null)
             {
                 var userClaim = _contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "id");
-                PropertyInfo propCreateBy = type.GetProperty(propUser);
-                if (propCreateBy != null)
+                if (userClaim != null)
                 {
-                    if (userClaim != null)
+                    PropertyInfo propCreateBy = type.GetProperty(propUser);
+                    if (propCreateBy != null)
                     {
-                        propCreateBy.SetValue(changedOrAddedItem, userClaim.Value.ToInt(), null);
+                        if (userClaim != null)
+                        {
+                            propCreateBy.SetValue(changedOrAddedItem, userClaim.Value.ToInt(), null);
+                        }
                     }
                 }
+               
             }
         }
 

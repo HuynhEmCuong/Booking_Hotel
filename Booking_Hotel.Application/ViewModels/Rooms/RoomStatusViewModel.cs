@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Booking_Hotel.Application.ViewModels
 {
-    public class RoomStatusViewModel
+    public partial class RoomStatusViewModel
     {
         public int Id { get; set; }
 

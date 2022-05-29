@@ -10,4 +10,10 @@ namespace Booking_Hotel.Web
         public string ApiBase { get; set; }
         public string ApiUrl { get; set; }
     }
+    public class PaypalSetting
+    {
+        public string ClientId { get; set; }
+        public string Secret { get; set; }
+        public double ExchangeRate { get; set; }
+    }
 }
