@@ -1,0 +1,39 @@
+version: '3'
+
+#NETWORK
+networks:
+   web-net:
+    external: true
+
+#SERVICES
+services:
+  booking-hotel-api:
+    hostname: booking-hotel-api
+    container_name: booking-hotel-api
+    image: huynhcuongem75/booking-hotel-api:latest
+    build: 
+        context: ./
+        dockerfile: ./Booking_Hotel.API/Dockerfile
+    restart: always
+    #volumes:
+      #-  D:\Backup\test:/app/wwwroot/FileUpload/Task
+
+    networks:
+      - web-net
+    ports:
+      - 4443:80
+  booking-hotel-web:
+    hostname: booking-hotel-web
+    container_name: booking-hotel-web
+    image: huynhcuongem75/booking-hotel-web:latest
+    build: 
+        context: ./
+        dockerfile: ./Booking_Hotel.Web/Dockerfile
+    restart: always
+    #volumes:
+      #-  D:\Backup\test:/app/wwwroot/FileUpload/Task
+
+    networks:
+      - web-net
+    ports:
+      - 4444:80

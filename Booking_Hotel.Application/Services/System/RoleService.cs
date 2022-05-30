@@ -53,8 +53,9 @@ namespace Booking_Hotel.Application.Inplementation
             var role = new AppRole()
             {
                 Name = model.Name,
-                Description = model.Description
+                Description = model.Description,
             };
+
             try
             {
                 var result = await _roleManager.CreateAsync(role);
