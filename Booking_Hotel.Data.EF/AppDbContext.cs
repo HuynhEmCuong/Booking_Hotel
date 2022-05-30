@@ -101,7 +101,7 @@ namespace Booking_Hotel.Data.EF
                 {
                     if (item.State == EntityState.Added)
                     {
-                        SetValueProperty(ref changedOrAddedItem, "CreateDate", null);
+                        SetValueProperty(ref changedOrAddedItem, "CreateDate", "CreateBy");
                     }
                     if (item.State == EntityState.Modified)
                     {
