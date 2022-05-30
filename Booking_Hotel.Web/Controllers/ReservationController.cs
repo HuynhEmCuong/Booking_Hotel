@@ -69,8 +69,9 @@ namespace Booking_Hotel.Web.Controllers
 
             string json = response.Content.ReadAsStringAsync().Result;
             RoomViewModel data = JsonConvert.DeserializeObject<RoomViewModel>(json);
+            var totalDays = (ConvertVnDateToEnDate(model.CheckInDate) - ConvertVnDateToEnDate(model.CheckOutDate)).TotalDays;
             model.Name = data.RoomCategory.Name;
-            model.TotalPrice = data.RoomCategory.Price;
+            model.TotalPrice = totalDays * data.RoomCategory.Price;
             model.RoomID = data.Id;
             ViewBag.Data = model;
             return View();
@@ -104,17 +105,19 @@ namespace Booking_Hotel.Web.Controllers
             var clientPaypal = new PayPalHttpClient(environment);
 
             #region Create Paypal Order
+            var totalDays = (ConvertVnDateToEnDate(model.CheckInDate) - ConvertVnDateToEnDate(model.CheckOutDate)).TotalDays;
+
             var itemList = new ItemList()
             {
                 Items = new List<Item>()
             };
-            var total = Math.Round(data.RoomCategory.Price / _paypalSetting.Value.ExchangeRate, 2);
+            var total = Math.Round((data.RoomCategory.Price * totalDays) / _paypalSetting.Value.ExchangeRate, 2);
 
             itemList.Items.Add(new Item()
             {
                 Name = data.Code,
                 Currency = "USD",
-                Price = Math.Round(data.RoomCategory.Price / _paypalSetting.Value.ExchangeRate, 2).ToString(),
+                Price = Math.Round((data.RoomCategory.Price * totalDays) / _paypalSetting.Value.ExchangeRate, 2).ToString(),
                 Quantity = 1.ToString(),
                 Sku = "sku",
                 Tax = "0"
@@ -122,9 +125,9 @@ namespace Booking_Hotel.Web.Controllers
             #endregion
             var checkInDate = ConvertVnDateToEnDate(model.CheckInDate).ToString("MM-dd-yyyy");
             var checkOutDate = ConvertVnDateToEnDate(model.CheckOutDate).ToString("MM-dd-yyyy");
+            model.TotalPrice = totalDays * data.RoomCategory.Price;
+
             string query = $"?checkInDate={checkInDate}&checkOutDat={checkOutDate}&roomCatID={model.RoomCatID}&adult={model.Adult}&kids={model.Kids}&fullName={HttpUtility.UrlEncode(model.FullName)}&email={model.Email}&phone={model.Phone}&roomID={model.RoomID}&totalPrice={model.TotalPrice}";
-            //string query = HttpUtility.UrlEncode(queryTemp);
-            //string query = $"{model.CheckInDate}/{model.CheckOutDate}/{model.RoomCatID}/{model.FullName}/{model.Email}/{model.Phone}/{model.RoomID}";
             var paypalOrderId = DateTime.Now.Ticks;
             var hostname = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
             var payment = new Payment()
@@ -193,7 +196,6 @@ namespace Booking_Hotel.Web.Controllers
                 return Redirect($"/thanh-toan/that-bai{query}");
             }
         }
-        ///{checkInDate?}/{checkOutDate?}/{roomCatId?}/{fullName?}/{email?}/{phone?}/{roomId?}
         [HttpGet]
         [Route("/thanh-toan/that-bai", Name = "pay-paypal-fail")]
         public async Task<IActionResult> CheckoutFail([FromQuery] PaypalViewModel model)
