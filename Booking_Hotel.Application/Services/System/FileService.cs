@@ -40,18 +40,16 @@ namespace Booking_Hotel.Application.Service.SystemService
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly MapperConfiguration _configMapper;
-        private readonly IConfiguration _config;
         private OperationResult operationResult;
 
-        public FileService(IRepository<FileData> repository, IHostingEnvironment env, IUnitOfWork unitOfWork, IMapper mapper, MapperConfiguration configMapper, IConfiguration config) : base(repository, unitOfWork, mapper, configMapper)
+        public FileService(IRepository<FileData> repository, IHostingEnvironment env, IUnitOfWork unitOfWork, IMapper mapper, MapperConfiguration configMapper)
+            : base(repository, unitOfWork, mapper, configMapper)
         {
             _repository = repository;
             _env = env;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _configMapper = configMapper;
-            _config = config;
-            this.operationResult = operationResult;
         }
 
         public async Task<OperationFileResult> UploadMultipleFileAsync(List<IFormFile> files, string pathFolder)

@@ -7,6 +7,7 @@ using Booking_Hotel.Data.Entities.Articles;
 using Booking_Hotel.Data.Entities.Contacts;
 using Booking_Hotel.Data.Entities.Reservations;
 using Booking_Hotel.Data.Entities.Rooms;
+using Booking_Hotel.Data.Entities.System;
 
 namespace Booking_Hotel.Application.AutoMapper
 {
@@ -24,6 +25,8 @@ namespace Booking_Hotel.Application.AutoMapper
             CreateMap<Reservation, ReservationViewModel>();
             CreateMap<RoomCategory, RoomCategoryViewModel>();
             CreateMap<Room, RoomViewModel>();
+            CreateMap<FileData, FileDataViewModel>();
+
 
         }
     }

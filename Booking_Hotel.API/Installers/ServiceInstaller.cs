@@ -32,6 +32,8 @@ namespace Booking_Hotel.Installers
             services.AddScoped<IRoomCategoryService, RoomCategoryService>();
             services.AddScoped<IRoomService, RoomService>();
 
+            services.AddScoped<IFileService, FileService>();
+
         }
     }
 }
