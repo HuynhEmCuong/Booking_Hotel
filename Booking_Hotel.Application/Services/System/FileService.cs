@@ -8,110 +8,137 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using FileSystem = System.IO.File;
+using System.Linq;
+using System.Text.RegularExpressions;
+using Booking_Hotel.Data.EF.Interface;
+using Booking_Hotel.Data.Entities.System;
+using AutoMapper;
+using AutoMapper.Configuration;
+using System.Net;
+using Booking_Hotel.Application.ViewModels.System;
 
 namespace Booking_Hotel.Application.Service.SystemService
 {
-    public interface IFileService
+    public interface IFileService : IBaseService<FileDataViewModel>
     {
-        //Task<OperationFileResult> UploadMultiFile(List<IFormFile> files, string studentName);
-        //Task<OperationFileResult> UploadFile(IFormFile file, string requestType);
-        //OperationResult RemoveFile(string fileName);
+        Task<OperationFileResult> UploadMultipleFileAsync(List<IFormFile> files, string pathFolder);
 
-        //OperationResult RemoveListFile(List<string> listfileName);
+        Task<OperationFileResult> UploadFileAsync(IFormFile file, string pathFolder);
 
-        Task<OperationFileResult> UploadFileStudent(IFormFile file, string requestType);
-        OperationResult RemoveFileStudent(string fileName);
+        Task<OperationResult> OnRemoveFileAsync(string fileLocalName);
+
+        Task<DownloadFileResult> DownloadFileAsync(string fullPath);
+
+        bool DeleteFile(string filepath);
 
     }
-    public class FileService : IFileService
+    public class FileService : BaseService<FileData, FileDataViewModel>, IFileService
     {
+        private readonly IRepository<FileData> _repository;
         private IHostingEnvironment _env;
-        public FileService(IHostingEnvironment env)
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+        private readonly MapperConfiguration _configMapper;
+        private readonly IConfiguration _config;
+        private OperationResult operationResult;
+
+        public FileService(IRepository<FileData> repository, IHostingEnvironment env, IUnitOfWork unitOfWork, IMapper mapper, MapperConfiguration configMapper, IConfiguration config) : base(repository, unitOfWork, mapper, configMapper)
         {
+            _repository = repository;
             _env = env;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
+            _configMapper = configMapper;
+            _config = config;
+            this.operationResult = operationResult;
         }
 
-
-        public  OperationResult RemoveFileStudent(string fileName)
+        public async Task<OperationFileResult> UploadMultipleFileAsync(List<IFormFile> files, string pathFolder)
         {
-            return  RemoveFile(fileName, "wwwroot/FileUpload/FileStudent/");
-        }
-        public async Task<OperationFileResult> UploadFileStudent(IFormFile file, string requestType)
-        {
-            return await UploadFile(file, requestType, "FileUpload/FileStudent/");
-        }
-
-
-
-        //Funtion Private
-
-        private OperationResult RemoveFile(string fileName, string folderPath = "wwwroot/FileUpload/Task/")
-        {
-            string filePath = Path.Combine(folderPath, fileName);
-
-            OperationResult operationResult = new OperationResult();
-            if (File.Exists(filePath))
+            var listFileResponse = new List<FileResponse>();
+            foreach (var file in files)
             {
-                try
+                var operationResult = await UploadFileAsync(file, pathFolder);
+                if (operationResult.Success)
                 {
-                    File.Delete(filePath);
-                    operationResult = new OperationResult
-                    {
-                        Success = true,
-                        StatusCode = StatusCode.Ok,
-                        Message = MessageReponse.DeleteSuccess,
-                        Data = fileName
-                    };
+                    listFileResponse.Add(operationResult.FileResponse);
                 }
-                catch (Exception ex)
-                {
-                    operationResult = ex.GetMessageError();
-                }
+            }
+            return new OperationFileResult() { Success = true, FileResponses = listFileResponse };
+        }
 
+        public async Task<OperationFileResult> UploadFileAsync(IFormFile file, string pathFolder)
+        {
+            if (file == null)
+            {
+                return new OperationFileResult()
+                {
+                    StatusCode = StatusCode.BadRequest,
+                    Message = "Không có file tải lên!",
+                    Success = false
+                };
+            }
+            var operationFileResult = new OperationFileResult();
+            if (pathFolder.IsNullOrEmpty())
+            {
+                pathFolder = "FileUpload/Commons/";
             }
             else
             {
-                operationResult = new OperationResult
+                var firstChar = pathFolder.FirstOrDefault();
+                var lastChar = pathFolder.LastOrDefault();
+                if (firstChar == '/')
                 {
-                    Success = false,
-                    StatusCode = StatusCode.Ok,
-                    Message = MessageReponse.DeleteError,
-                    Data = fileName
-                };
-
+                    pathFolder = pathFolder.TrimStart('/');
+                }
+                if (lastChar != '/')
+                {
+                    pathFolder = pathFolder + "/";
+                }
             }
-            return operationResult;
-        }
-        private async Task<OperationFileResult> UploadFile(IFormFile file, string requestType, string folderPath = "FileUpload/Task/")
-        {
-            string folderRoot = _env.WebRootPath;
-            bool exists = Directory.Exists(Path.Combine(folderRoot, folderPath));
-            if (!exists)
-                Directory.CreateDirectory(Path.Combine(folderRoot, folderPath));
-            var nowDate = DateTime.Now;
-            string fileExtension = Path.GetExtension(file.FileName);
-            string fileName = Path.GetFileNameWithoutExtension(file.FileName).ToFileFormat();
-
-            requestType = requestType.ToCompactAllSpaces().ToNoSignFormat(true);
-            string fileNewName = requestType + "_" + nowDate.Day + "_" + nowDate.Month + "_" + nowDate.Year + nowDate.Ticks + fileExtension.ToLower();
-
-            var operationFileResult = new OperationFileResult();
             try
             {
-                using (FileStream fs = System.IO.File.Create("wwwroot/" + folderPath + fileNewName))
+                //Khởi tạo folder
+                var webRoot = _env.WebRootPath;
+                if (webRoot == null)
                 {
-                    await file.CopyToAsync(fs);
-                    fs.Flush();
-                    var fileResponse = new FileResponse
-                    {
-                        FileLocalName = fileNewName,
-                        FileOriginalName = file.FileName,
-                        FileExtension = fileExtension,
-                        FileType = file.ContentType,
-                        FileFullPath = folderPath + fileNewName
-                    };
+                    operationFileResult = new OperationFileResult() { Message = "Folder wwwroot not exist!", Success = false };
+                }
+                else
+                {
+                    bool exists = Directory.Exists(Path.Combine(webRoot, pathFolder));
+                    if (!exists)
+                        Directory.CreateDirectory(Path.Combine(webRoot, pathFolder));
 
-                    operationFileResult = new OperationFileResult() { Success = true, FileResponse = fileResponse };
+                    var nowDate = DateTime.Now;
+                    string fileExtension = Path.GetExtension(file.FileName);
+                    string fileName = Path.GetFileNameWithoutExtension(file.FileName).ToFileFormat();
+                    string fileNewName = fileName + "_" + nowDate.Day + "_" + nowDate.Month + "_" + nowDate.Year + "_" + nowDate.Ticks + fileExtension;
+
+                    using (FileStream stream = FileSystem.Create("wwwroot/" + pathFolder + fileNewName))
+                    {
+                        await file.CopyToAsync(stream);
+
+                        var fileResponse = new FileResponse
+                        {
+                            FileLocalName = fileNewName,
+                            FileOriginalName = file.FileName,
+                            FileExtension = fileExtension,
+                            FileType = file.ContentType,
+                            Path = pathFolder,
+                            FileFullPath = pathFolder + fileNewName
+                        };
+
+                        //Check is image
+                        string pattern = "([^\\s]+(\\.(?i)(jpe?g|png|gif|bmp))$)";
+                        Regex rgx = new Regex(pattern);
+                        if (rgx.IsMatch(file.FileName))
+                            fileResponse.IsImage = true;
+                        else
+                            fileResponse.IsImage = false;
+                        operationFileResult = new OperationFileResult() { Success = true, FileResponse = fileResponse };
+                    }
                 }
             }
             catch (Exception ex)
@@ -122,55 +149,93 @@ namespace Booking_Hotel.Application.Service.SystemService
                     Success = false
                 };
             }
+
             return operationFileResult;
         }
 
-        private async Task<OperationFileResult> UploadMultiFile(List<IFormFile> files, string studentName)
+        public async Task<OperationResult> OnRemoveFileAsync(string fileLocalName)
         {
-            var listFileResponse = new List<FileResponse>();
-            foreach (var file in files)
+            var file = await _repository.FindSingleAsync(x => x.FileLocalName == fileLocalName);
+            if (file != null)
             {
-                var operationResult = await UploadFile(file, studentName);
-                if (operationResult.Success)
+                if (DeleteFile(file.FileFullPath))
                 {
-                    listFileResponse.Add(operationResult.FileResponse);
+                    //Delete file
+                    _repository.Remove(file);
+                    await _unitOfWork.SaveChangeAsync();
+                    operationResult = new OperationResult() { Success = true };
                 }
-            }
-            return new OperationFileResult() { Success = true, FileResponses = listFileResponse };
-        }
-        private OperationResult RemoveListFile(List<string> listfileName)
-        {
-            string folderPath = "wwwroot/FileUpload/Task/";
-
-            OperationResult operationResult = new OperationResult();
-            foreach (var fileName in listfileName)
-            {
-                if (fileName != "")
+                else
                 {
-                    string filePath = Path.Combine(folderPath, fileName);
-                    if (File.Exists(filePath))
+                    operationResult = new OperationResult()
                     {
-                        try
-                        {
-                            File.Delete(filePath);
-
-                        }
-                        catch (Exception ex)
-                        {
-                            return operationResult = ex.GetMessageError();
-                        }
-
-                    }
+                        StatusCode = StatusCode.BadRequest,
+                        Message = "Xóa file thất bại",
+                        Success = false
+                    };
                 }
             }
-            operationResult = new OperationResult
+            else
             {
-                Success = true,
-                Message = "Success"
+                operationResult = new OperationResult()
+                {
+                    StatusCode = StatusCode.BadRequest,
+                    Message = "File không tồn tại!",
+                    Success = false
+                };
+            }
 
-            };
             return operationResult;
         }
+
+        /// <summary>
+        /// Hàm xóa file vật lý trong hệ thống
+        /// </summary>
+        /// <param name="filepath">Đường dẫn file</param>
+        /// <returns></returns>
+        public bool DeleteFile(string filepath)
+        {
+            var webRoot = _env.WebRootPath;
+            var path = Path.Combine(webRoot, filepath);
+            if (FileSystem.Exists(path))
+            {
+                try
+                {
+                    FileSystem.Delete(path);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        public async Task<DownloadFileResult> DownloadFileAsync(string fullPath)
+        {
+            try
+            {
+                var file = await _repository.FindSingleAsync(x => x.FileFullPath == fullPath);
+                if (file != null)
+                {
+                    var pathFile = Path.Combine(_env.WebRootPath, fullPath);
+                    var net = new WebClient();
+                    var data = net.DownloadData(pathFile);
+                    var content = new MemoryStream(data);
+                    return await Task.FromResult(new DownloadFileResult(content, file.FileType, file.FileOriginalName));
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
 
 
     }

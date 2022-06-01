@@ -4,6 +4,7 @@ using Booking_Hotel.Data.Entities.Articles;
 using Booking_Hotel.Data.Entities.Contacts;
 using Booking_Hotel.Data.Entities.Reservations;
 using Booking_Hotel.Data.Entities.Rooms;
+using Booking_Hotel.Data.Entities.System;
 using Booking_Hotel.Ultilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -45,6 +46,8 @@ namespace Booking_Hotel.Data.EF
         public DbSet<Article> Articles { get; set; }
 
         public DbSet<About> Abouts { get; set; }
+
+        public DbSet<FileData> FileDatas { get; set; }
 
 
         public DbSet<EmailLog> EmailLogs { get; set; }
