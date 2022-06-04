@@ -3,6 +3,7 @@ using Booking_Hotel.Application.Service;
 using Booking_Hotel.Application.Service.SystemService;
 using Booking_Hotel.Application.Services;
 using Booking_Hotel.Application.Services.Articles;
+using Booking_Hotel.Application.Services.Rooms;
 using Booking_Hotel.Application.Services.System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +33,7 @@ namespace Booking_Hotel.Installers
             services.AddScoped<IReservationService, ReservationService>();
             services.AddScoped<IRoomCategoryService, RoomCategoryService>();
             services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IRoomStatusService, RoomStatusService>();
 
 
             //File
