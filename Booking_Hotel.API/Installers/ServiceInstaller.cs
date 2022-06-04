@@ -2,6 +2,7 @@
 using Booking_Hotel.Application.Service;
 using Booking_Hotel.Application.Service.SystemService;
 using Booking_Hotel.Application.Services;
+using Booking_Hotel.Application.Services.Articles;
 using Booking_Hotel.Application.Services.System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,13 +16,13 @@ namespace Booking_Hotel.Installers
         {
 
             services.AddScoped(typeof(IBaseService<>), typeof(BaseService<,>));
+
+            //Sytems
             services.AddScoped<IAuthService, AuthService>();
-
-
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IFileService, FileService>();
-
+            services.AddScoped<IFileService, FileService>();
 
             services.AddScoped<IAboutService, AboutService>();
             services.AddScoped<IArticleCategoryService, ArticleCategoryService>();
@@ -32,7 +33,11 @@ namespace Booking_Hotel.Installers
             services.AddScoped<IRoomCategoryService, RoomCategoryService>();
             services.AddScoped<IRoomService, RoomService>();
 
-            services.AddScoped<IFileService, FileService>();
+
+            //File
+            services.AddScoped<IArticleFileService, ArticleFileService>();
+            services.AddScoped<IArticleCateFileService, ArticleCateFileService>();
+
 
         }
     }

@@ -1,4 +1,5 @@
-﻿using Booking_Hotel.Data.Enums;
+﻿using Booking_Hotel.Data.Entities.Articles.Files;
+using Booking_Hotel.Data.Enums;
 using Booking_Hotel.Data.Interface;
 using System;
 using System.Collections.Generic;
@@ -26,5 +27,7 @@ namespace Booking_Hotel.Data.Entities.Articles
         public DateTime? ModifyDate { get; set; }
 
         public ICollection<Article> Articles { get; set; }
+
+        public ICollection<ArticleCateFile> ArticleCategoryFiles{ get; set; }
     }
 }

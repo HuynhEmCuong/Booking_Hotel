@@ -1,4 +1,5 @@
-﻿using Booking_Hotel.Data.Enums;
+﻿using Booking_Hotel.Data.Entities.Articles.Files;
+using Booking_Hotel.Data.Enums;
 using Booking_Hotel.Data.Interface;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,6 @@ namespace Booking_Hotel.Data.Entities.Articles
 
         public string Content { get; set; }
 
-        [StringLength(255)]
         public string ImagesUrl { get; set; }
         public Status Status { get; set; }
 
@@ -38,6 +38,8 @@ namespace Booking_Hotel.Data.Entities.Articles
         public DateTime? ModifyDate { get; set; }
 
         [ForeignKey("ArticleCateId")]
-        public ArticleCategory ArticleCategory { get; set; }
+        public virtual ArticleCategory ArticleCategory { get; set; }
+
+        public virtual ICollection<ArticleFile> ArticleFile { get; set; }
     }
 }

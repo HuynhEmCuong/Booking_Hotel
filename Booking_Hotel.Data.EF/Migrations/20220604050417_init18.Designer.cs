@@ -4,14 +4,16 @@ using Booking_Hotel.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Booking_Hotel.Data.EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220604050417_init18")]
+    partial class init18
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -897,7 +899,7 @@ namespace Booking_Hotel.Data.EF.Migrations
             modelBuilder.Entity("Booking_Hotel.Data.Entities.Articles.Files.ArticleFile", b =>
                 {
                     b.HasOne("Booking_Hotel.Data.Entities.Articles.Article", "Article")
-                        .WithMany("ArticleFile")
+                        .WithMany("ArticleFiles")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -53,9 +53,10 @@ namespace Booking_Hotel.Application.Service
 
         public virtual async Task<OperationResult> AddAsync(TViewModel model)
         {
-            var item = _mapper.Map<T>(model);
+           
             try
             {
+                var item = _mapper.Map<T>(model);
                 await _repository.AddAsync(item);
                 await _unitOfWork.SaveChangeAsync();
 

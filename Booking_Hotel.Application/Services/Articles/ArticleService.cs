@@ -1,10 +1,16 @@
 ﻿using AutoMapper;
+using Booking_Hotel.Application.Configuration;
 using Booking_Hotel.Application.Service;
 using Booking_Hotel.Application.ViewModels;
 using Booking_Hotel.Data.EF.Interface;
 using Booking_Hotel.Data.Entities.Articles;
+using Booking_Hotel.Data.Entities.Articles.Files;
+using Booking_Hotel.Utilities.Dtos;
+using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Data.ResponseModel;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Booking_Hotel.Application.Services
@@ -33,5 +39,13 @@ namespace Booking_Hotel.Application.Services
             var data = await _repository.FindAll(x=> x.ArticleCateId == catId).AsNoTracking().ToListAsync();
             return _mapper.Map<List<ArticleViewModel>>(data);
         }
+
+        public override async Task<LoadResult> LoadDxoGridAsync(DataSourceLoadOptions loadOptions)
+        {
+            var query = _repository.FindAll().Include(x => x.ArticleFile).ThenInclude(x => x.FileData);
+            return await DataSourceLoader.LoadAsync(query, loadOptions);
+        }
+
+
     }
 }

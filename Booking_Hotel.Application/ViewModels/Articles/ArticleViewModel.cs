@@ -1,4 +1,5 @@
-﻿using Booking_Hotel.Data.Enums;
+﻿using Booking_Hotel.Application.ViewModels.Articles;
+using Booking_Hotel.Data.Enums;
 using Booking_Hotel.Data.Interface;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace Booking_Hotel.Application.ViewModels
 {
-    public partial class ArticleViewModel
+    public  class ArticleViewModel
     {
         public int Id { get; set; }
 
@@ -36,6 +37,9 @@ namespace Booking_Hotel.Application.ViewModels
         public DateTime? CreateDate { get; set; }
         public DateTime? ModifyDate { get; set; }
 
-        public ArticleCategoryViewModel ArticleCategory { get; set; }
+        public virtual ArticleCategoryViewModel ArticleCategory { get; set; }
+
+        public virtual ICollection<ArticleFileViewModel> ArticleFile { get; set; }
+
     }
 }
