@@ -1,4 +1,5 @@
-﻿using Booking_Hotel.Data.Interface;
+﻿using Booking_Hotel.Data.Entities.Rooms.Files;
+using Booking_Hotel.Data.Interface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -40,6 +41,8 @@ namespace Booking_Hotel.Data.Entities.Rooms
         public DateTime? CreateDate { get; set; }
         public DateTime? ModifyDate { get; set; }
 
-        public ICollection<Room> Rooms { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; }
+
+        public virtual ICollection<RoomCateFile>  RoomCateFile{ get; set; }
     }
 }

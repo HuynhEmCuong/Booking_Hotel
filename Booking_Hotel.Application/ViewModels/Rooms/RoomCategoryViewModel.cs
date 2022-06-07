@@ -1,4 +1,5 @@
-﻿using Booking_Hotel.Data.Interface;
+﻿using Booking_Hotel.Application.ViewModels.Rooms.Files;
+using Booking_Hotel.Data.Interface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -34,6 +35,9 @@ namespace Booking_Hotel.Application.ViewModels
         public int? ModifyBy { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime? ModifyDate { get; set; }
+
         public List<RoomViewModel> Rooms { get; set; }
+
+        public virtual ICollection<RoomCateFileViewModel> RoomCateFile { get; set; }
     }
 }
