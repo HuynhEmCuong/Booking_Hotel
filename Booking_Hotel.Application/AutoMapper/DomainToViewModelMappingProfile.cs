@@ -43,7 +43,7 @@ namespace Booking_Hotel.Application.AutoMapper
             CreateMap<RoomCateFile, RoomCateFileViewModel>().ForMember(
                dest => dest.File,
                act => act.MapFrom(x => x.FileData)
-               ).ReverseMap();
+               );
 
 
 
