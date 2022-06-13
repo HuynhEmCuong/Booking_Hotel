@@ -27,6 +27,7 @@ namespace Booking_Hotel.Application.AutoMapper
             CreateMap<GuestViewModel, Guest>();
             CreateMap<ReservationViewModel, Reservation>();
             CreateMap<RoomCategoryViewModel, RoomCategory>();
+            CreateMap<RoomStatusViewModel, RoomStatus>();
             CreateMap<RoomViewModel, Room>();
 
             CreateMap<ArticleFileViewModel, ArticleFile>().ForMember(

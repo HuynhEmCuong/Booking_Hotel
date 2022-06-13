@@ -29,7 +29,7 @@ namespace Booking_Hotel.Application.AutoMapper
             CreateMap<Reservation, ReservationViewModel>();
             CreateMap<RoomCategory, RoomCategoryViewModel>();
             CreateMap<Room, RoomViewModel>();
-            CreateMap<RoomStatus, RoomStatusViewModel>().ReverseMap();
+            CreateMap<RoomStatus, RoomStatusViewModel>();
             CreateMap<FileData, FileDataViewModel>().ReverseMap();
             CreateMap<ArticleFile, ArticleFileViewModel>().ForMember(
                 dest => dest.File,
