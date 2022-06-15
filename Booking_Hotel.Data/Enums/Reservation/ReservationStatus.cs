@@ -11,3 +11,4 @@ namespace Booking_Hotel.Data.Enums.Reservation
         Cancel
     }
 } 
+    

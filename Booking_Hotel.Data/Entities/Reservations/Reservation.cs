@@ -38,5 +38,11 @@ namespace Booking_Hotel.Data.Entities.Reservations
 
         [ForeignKey("RoomId")]
         public Room Room { get; set; }
+
+        [ForeignKey("CreateBy")]
+        public AppUser UserCreate { get; set; }
+
+        [ForeignKey("ModifyBy")]
+        public AppUser UserModify { get; set; }
     }
 }
