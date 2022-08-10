@@ -4,6 +4,7 @@ using Booking_Hotel.Data.Entities.Articles;
 using Booking_Hotel.Data.Entities.Contacts;
 using Booking_Hotel.Data.Entities.Reservations;
 using Booking_Hotel.Data.Entities.Rooms;
+using Booking_Hotel.Data.Entities.Rooms.Files;
 using Booking_Hotel.Data.Entities.System;
 using Booking_Hotel.Ultilities;
 using Microsoft.AspNetCore.Http;
@@ -60,13 +61,11 @@ namespace Booking_Hotel.Data.EF
             builder.Entity<IdentityRoleClaim<int>>().ToTable("AppRoleClaims")
                 .HasKey(x => x.Id);
             builder.Entity<IdentityUserLogin<int>>().ToTable("AppUserLogins").HasKey(x => x.UserId);
-
             builder.Entity<IdentityUserRole<int>>().ToTable("AppUserRoles")
-                .HasKey(x => new { x.RoleId, x.UserId });
+              .HasKey(x => new { x.RoleId, x.UserId });
 
             builder.Entity<IdentityUserToken<int>>().ToTable("AppUserTokens")
                .HasKey(x => new { x.UserId });
-
 
 
             builder.Entity<Article>()
@@ -80,6 +79,12 @@ namespace Booking_Hotel.Data.EF
               .WithMany(c => c.Rooms)
               .IsRequired()
               .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<RoomCateFile>()
+             .HasOne(c => c.RoomCategory)
+             .WithMany(c => c.RoomCateFile)
+             .IsRequired()
+             .OnDelete(DeleteBehavior.Cascade);
         }
 
         public override int SaveChanges()
